@@ -31,6 +31,9 @@ public class Fraction {
     public Fraction(int numerator, int denominator) {
         this.numerator = numerator;
         this.denominator = denominator;
+        if (denominator == 0) {
+            throw new IllegalArgumentException("El denominador no puede ser 0");
+        }
     }
 
     public Fraction() {
@@ -50,6 +53,9 @@ public class Fraction {
     }
 
     public void setDenominator(int denominator) {
+        if (denominator == 0) {
+            throw new IllegalArgumentException("El denominador no puede ser 0");
+        }
         this.denominator = denominator;
     }
 
@@ -63,5 +69,58 @@ public class Fraction {
                 "numerator=" + numerator +
                 ", denominator=" + denominator +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Fraction other = (Fraction) obj;
+        return numerator == other.numerator && denominator == other.denominator;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + numerator;
+        result = 31 * result + denominator;
+        return result;
+    }
+
+    public boolean isProper() {
+        return Math.abs(numerator) < Math.abs(denominator);
+    }
+
+    public boolean isImproper() {
+        return Math.abs(numerator) >= Math.abs(denominator);
+    }
+
+    public boolean isEquivalent(Fraction other) {
+        return this.numerator * other.denominator == this.denominator * other.numerator;
+    }
+
+    public Fraction add(Fraction other) {
+        int commonDenominator = this.denominator * other.denominator;
+        int newNumerator = this.numerator * other.denominator + other.numerator * this.denominator;
+        return new Fraction(newNumerator, commonDenominator);
+    }
+
+    public Fraction multiply(Fraction other) {
+        int newNumerator = this.numerator * other.numerator;
+        int newDenominator = this.denominator * other.denominator;
+        return new Fraction(newNumerator, newDenominator);
+    }
+
+    public Fraction divide(Fraction other) {
+        if (other.numerator == 0) {
+            throw new ArithmeticException("No se puede dividir por 0");
+        }
+        int newNumerator = this.numerator * other.denominator;
+        int newDenominator = this.denominator * other.numerator;
+        return new Fraction(newNumerator, newDenominator);
     }
 }
