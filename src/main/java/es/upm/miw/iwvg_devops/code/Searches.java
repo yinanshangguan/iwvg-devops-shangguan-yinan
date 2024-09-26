@@ -30,4 +30,12 @@ public class Searches {
                 })
                 .orElse(new Fraction(1, 1));
     }
+    public Stream<String> findUserFamilyNameByAllNegativeSignFractionDistinct() {
+        return new UsersDatabase().findAll()
+                .filter(user -> user.getFractions().stream()
+                        .allMatch(fraction -> fraction.getNumerator() * fraction.getDenominator() < 0)
+                )
+                .map(User::getFamilyName)
+                .distinct();
+    }
 }

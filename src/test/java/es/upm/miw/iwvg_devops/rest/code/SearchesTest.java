@@ -37,12 +37,16 @@ public class SearchesTest {
     void testFindFractionMultiplicationByUserFamilyName() {
         Fraction expected = new Fraction(12, -240);
         Fraction actual = new Searches().findFractionMultiplicationByUserFamilyName("López");
-
         assertEquals(expected.getNumerator(), actual.getNumerator());
         assertEquals(expected.getDenominator(), actual.getDenominator());
     }
-
-
+    @Test
+    void testFindUserFamilyNameByAllNegativeSignFractionDistinct() {
+        List<String> expected = List.of();
+        List<String> actual = new Searches().findUserFamilyNameByAllNegativeSignFractionDistinct()
+                .collect(Collectors.toList());
+        assertEquals(expected, actual);
+    }
 }
 
 
