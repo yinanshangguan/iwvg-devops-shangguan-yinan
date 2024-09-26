@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UserTest {
     private User user;
@@ -57,8 +57,20 @@ public class UserTest {
     }
 
     @Test
+    void testSetName() {
+        user.setName("Mike");
+        assertEquals("Mike", user.getName());
+    }
+
+    @Test
     void testGetFamilyName() {
         assertEquals("Doe", user.getFamilyName());
+    }
+
+    @Test
+    void testSetFamilyName() {
+        user.setFamilyName("Smith");
+        assertEquals("Smith", user.getFamilyName());
     }
 
     @Test
@@ -71,9 +83,15 @@ public class UserTest {
     }
 
     @Test
+    void testDefaultConstructor() {
+        User defaultUser = new User();
+        assertNotNull(defaultUser.getFractions());
+        assertTrue(defaultUser.getFractions().isEmpty());
+    }
+
+    @Test
     void testToString() {
         String expected = "User{id='1', name='John', familyName='Doe', fractions=[Fraction{numerator=1, denominator=2}, Fraction{numerator=3, denominator=4}]}";
         assertEquals(expected, user.toString());
     }
-
 }

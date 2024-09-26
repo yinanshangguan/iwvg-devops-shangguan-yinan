@@ -31,9 +31,6 @@ public class Fraction {
     public Fraction(int numerator, int denominator) {
         this.numerator = numerator;
         this.denominator = denominator;
-        if (denominator == 0) {
-            throw new IllegalArgumentException("El denominador no puede ser 0");
-        }
     }
 
     public Fraction() {
@@ -53,9 +50,6 @@ public class Fraction {
     }
 
     public void setDenominator(int denominator) {
-        if (denominator == 0) {
-            throw new IllegalArgumentException("El denominador no puede ser 0");
-        }
         this.denominator = denominator;
     }
 
@@ -116,9 +110,6 @@ public class Fraction {
     }
 
     public Fraction divide(Fraction other) {
-        if (other.numerator == 0) {
-            throw new ArithmeticException("No se puede dividir por 0");
-        }
         int newNumerator = this.numerator * other.denominator;
         int newDenominator = this.denominator * other.numerator;
         return new Fraction(newNumerator, newDenominator);
