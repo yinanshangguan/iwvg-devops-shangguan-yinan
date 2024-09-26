@@ -2,3 +2,5 @@
 ## Ingeniería Web: Visión General (IWVG) DevOps
 > Este proyecto es una Plantilla de apoyo docente de la asignatura.
 
+### Estado del Código
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=yinanshangguan_iwvg-devops-shangguan-yinan&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=yinanshangguan_iwvg-devops-shangguan-yinan)
