@@ -101,4 +101,13 @@ public class FractionTest {
         Fraction result = fraction1.divide(fraction2);
         assertEquals(new Fraction(4, 6), result);
     }
+    @Test
+    void testHashCode() {
+        Fraction fraction1 = new Fraction(1, 2);
+        Fraction fraction2 = new Fraction(1, 2);
+        Fraction fraction3 = new Fraction(3, 4);
+
+        assertEquals(fraction1.hashCode(), fraction2.hashCode());
+        assertNotEquals(fraction1.hashCode(), fraction3.hashCode());
+    }
 }
