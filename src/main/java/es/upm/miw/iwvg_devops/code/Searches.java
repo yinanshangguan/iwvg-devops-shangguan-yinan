@@ -19,4 +19,15 @@ public class Searches {
                 .filter(fraction -> fraction.getNumerator() < 0)
                 .map(Fraction::decimal);
     }
+    public Fraction findFractionMultiplicationByUserFamilyName(String familyName) {
+        return new UsersDatabase().findAll()
+                .filter(user -> user.getFamilyName().equals(familyName))
+                .flatMap(user -> user.getFractions().stream())
+                .reduce((fraction1, fraction2) -> {
+                    int newNumerator = fraction1.getNumerator() * fraction2.getNumerator();
+                    int newDenominator = fraction1.getDenominator() * fraction2.getDenominator();
+                    return new Fraction(newNumerator, newDenominator);
+                })
+                .orElse(new Fraction(1, 1));
+    }
 }

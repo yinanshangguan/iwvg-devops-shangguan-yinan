@@ -1,5 +1,6 @@
 package es.upm.miw.iwvg_devops.rest.code;
 
+import es.upm.miw.iwvg_devops.code.Fraction;
 import es.upm.miw.iwvg_devops.code.Searches;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,6 +32,14 @@ public class SearchesTest {
         List<Double> expectedList = expected.collect(Collectors.toList());
         List<Double> actualList = actual.collect(Collectors.toList());
         assertEquals(expectedList, actualList);
+    }
+    @Test
+    void testFindFractionMultiplicationByUserFamilyName() {
+        Fraction expected = new Fraction(12, -240);
+        Fraction actual = new Searches().findFractionMultiplicationByUserFamilyName("López");
+
+        assertEquals(expected.getNumerator(), actual.getNumerator());
+        assertEquals(expected.getDenominator(), actual.getDenominator());
     }
 
 
