@@ -23,12 +23,14 @@ public class Searches {
         return new UsersDatabase().findAll()
                 .filter(user -> user.getFamilyName().equals(familyName))
                 .flatMap(user -> user.getFractions().stream())
-                .reduce((fraction1, fraction2) -> {
-                    int newNumerator = fraction1.getNumerator() * fraction2.getNumerator();
-                    int newDenominator = fraction1.getDenominator() * fraction2.getDenominator();
-                    return new Fraction(newNumerator, newDenominator);
-                })
+                .reduce(this::multiplyFractions)
                 .orElse(new Fraction(1, 1));
+    }
+    private Fraction multiplyFractions(Fraction fraction1, Fraction fraction2) {
+        int newNumerator = fraction1.getNumerator() * fraction2.getNumerator();
+        int newDenominator = fraction1.getDenominator() * fraction2.getDenominator();
+
+        return new Fraction(newNumerator, newDenominator);
     }
     public Stream<String> findUserFamilyNameByAllNegativeSignFractionDistinct() {
         return new UsersDatabase().findAll()
